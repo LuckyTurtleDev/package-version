@@ -1,0 +1,18 @@
+[package]
+name = "package-version"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.75"
+attohttpc = { version = "0.26.1", features = ["json", "tls-rustls-native-roots"] }
+basic-toml = { version = "0.1.7", optional = true }
+json = "0.12.4"
+serde = { version = "1.0.192", features = ["serde_derive"] }
+
+[features]
+bin = ["dep:basic-toml"]
+
+[[bin]]
+name = "package-version"
+required-features = ["bin"]

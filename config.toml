@@ -1,0 +1,13 @@
+[[sources]]
+type = "crates_io"
+crate = "crab-hole"
+allow_yanked = false
+
+[[sources]]
+type = "github_release"
+repo = "Robosturm/Commander_Wars"
+allow_prerelease = false
+
+[[sources]]
+type = "github_tag"
+repo = "ankitects/anki"

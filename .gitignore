@@ -1,0 +1,23 @@
+# rust/cargo
+/target/
+Cargo.lock
+
+data
+
+# git
+*.orig
+
+# emacs
+*~
+\#*#
+.#*#
+
+# intellij
+/.idea/
+*.ipr
+*.iml
+
+# certificates
+*.crt
+*.key
+*.pem
