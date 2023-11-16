@@ -1,13 +1,19 @@
 [[sources]]
 type = "crates_io"
 crate = "crab-hole"
-allow_yanked = false
+allow_yanked = false #default
 
 [[sources]]
 type = "github_release"
 repo = "Robosturm/Commander_Wars"
-allow_prerelease = false
+allow_prerelease = false #default
 
 [[sources]]
 type = "github_tag"
 repo = "ankitects/anki"
+
+[[sources]]
+type = "docker_hub"
+namespace = "_"
+image = "alpine"
+tag = "latest" #default
