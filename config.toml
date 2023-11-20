@@ -17,3 +17,8 @@ type = "docker_hub"
 namespace = "_"
 image = "alpine"
 tag = "latest" #default
+
+[[sources]]
+type = "manual"
+version = "1.8.9"
+

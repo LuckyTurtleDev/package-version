@@ -1,11 +1,13 @@
 pub use crates_io::CratesIoRelease;
 use dockerhub::DockerHubImage;
 pub use github::{GithubRelease, GithubTag};
-use serde::{de::value, Deserialize};
+pub use manual::Manual;
+use serde::Deserialize;
 
 mod crates_io;
 mod dockerhub;
 mod github;
+mod manual;
 
 #[derive(Clone, Debug, Deserialize)]
 pub struct Tag {
@@ -24,7 +26,8 @@ pub enum Sources {
 	CratesIo(CratesIoRelease),
 	GithubRelease(GithubRelease),
 	GithubTag(GithubTag),
-	DockerHub(DockerHubImage)
+	DockerHub(DockerHubImage),
+	Manual(Manual)
 }
 
 impl Source for Sources {
@@ -34,7 +37,8 @@ impl Source for Sources {
 				Self::CratesIo(value) => value.get_tags(),
 				Self::GithubRelease(value) => value.get_tags(),
 				Self::GithubTag(value) => value.get_tags(),
-				Self::DockerHub(value) => value.get_tags()
+				Self::DockerHub(value) => value.get_tags(),
+				Self::Manual(value) => value.get_tags()
 			}
 		}
 	}
@@ -43,7 +47,8 @@ impl Source for Sources {
 			Self::CratesIo(value) => value.name(),
 			Self::GithubRelease(value) => value.name(),
 			Self::GithubTag(value) => value.name(),
-			Self::DockerHub(value) => value.name()
+			Self::DockerHub(value) => value.name(),
+			Self::Manual(value) => value.name()
 		}
 	}
 }
