@@ -8,6 +8,7 @@ anyhow = "1.0.75"
 attohttpc = { version = "0.26.1", features = ["json", "tls-rustls-native-roots"] }
 basic-toml = { version = "0.1.7", optional = true }
 json = "0.12.4"
+semver = "1.0.23"
 serde = { version = "1.0.192", features = ["serde_derive"] }
 
 [features]

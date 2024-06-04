@@ -1,4 +1,5 @@
 use crate::{Source, Tag};
+use anyhow::Context;
 use attohttpc::get;
 use serde::Deserialize;
 
@@ -20,7 +21,9 @@ pub struct CratesIoRelease {
 	#[serde(rename = "crate")]
 	krate: String,
 	#[serde(default)]
-	allow_yanked: bool
+	allow_yanked: bool,
+	#[serde(default)]
+	allow_prerelease: bool
 }
 
 impl Source for CratesIoRelease {
@@ -37,7 +40,10 @@ impl Source for CratesIoRelease {
 			.versions
 			.into_iter()
 			.filter_map(|f| {
-				if self.allow_yanked && f.yanked {
+				let semver = semver::Version::parse(&f.num).expect("invalid semver");
+				if (!self.allow_yanked && f.yanked)
+					|| (!self.allow_prerelease && !semver.pre.is_empty())
+				{
 					None
 				} else {
 					Some(Tag {
